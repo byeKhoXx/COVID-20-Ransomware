@@ -24,4 +24,4 @@ PE.cpp:96:9: error: 'memcpy_s' was not declared in this scope; did you mean 'mem
 
 ```
 
-A possible solution may be change *memcpy* by *memcpy_s*, but if you do it, appers more error. In order to avoid the new problems when the change is done, probably addapting the code may be enough (visit this [link](https://en.cppreference.com/w/c/string/byte/memcpy) to get more info about it). Feel free to make the changes you want!
+A possible solution may be change *memcpy_s* by *memcpy*, but if you do it, apper more errors. In order to avoid the new problems when the change is done, probably addapting the code may be enough (visit this [link](https://en.cppreference.com/w/c/string/byte/memcpy) to get more info about it). Feel free to make the changes you want!
