@@ -28,5 +28,8 @@ A possible solution may be change *memcpy_s* by *memcpy*, but if you do it, appe
 
 ## Shell code 
 Create process + encrypt(Albert) + ofuscation(Walid)
+
 https://docs.microsoft.com/en-us/windows/win32/procthread/creating-processes
+
+
 https://github.com/NytroRST/ShellcodeCompiler
