@@ -25,3 +25,8 @@ PE.cpp:96:9: error: 'memcpy_s' was not declared in this scope; did you mean 'mem
 ```
 
 A possible solution may be change *memcpy_s* by *memcpy*, but if you do it, apper more errors. In order to avoid the new problems when the change is done, probably addapting the code may be enough (visit this [link](https://en.cppreference.com/w/c/string/byte/memcpy) to get more info about it). Feel free to make the changes you want!
+
+## Shell code 
+Create process + encrypt(Albert) + ofuscation(Walid)
+https://docs.microsoft.com/en-us/windows/win32/procthread/creating-processes
+https://github.com/NytroRST/ShellcodeCompiler
