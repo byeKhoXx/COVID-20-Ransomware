@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 		";
 		return EXIT_FAILURE;
 	}
-	std::experimental::filesystem::path input_file{ argv[1] };
+	std::filesystem::path input_file{ argv[1] };
 	if (exists(input_file))
 	{
 		if (!is_regular_file(input_file))
@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 		std::cout << "File does not exist\n";
 		return EXIT_FAILURE;
 	}
-	auto outfile = std::experimental::filesystem::path{ argv[2] }.generic_string();
+	auto outfile = std::filesystem::path{ argv[2] }.generic_string();
 
 	tuple<bool, char*, fstream::pos_type>  bin = PE::OpenBinary(input_file.generic_string());
 	if (!get<0>(bin))
