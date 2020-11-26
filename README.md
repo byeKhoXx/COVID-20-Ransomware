@@ -15,7 +15,7 @@ For this, we have the following files:
 > g++ -c PE.cpp
 > g++ -c infectPE.cpp
 > g++ -o infectPE.exe infectPE.o
-> .\infectPE.exe .\executable_to_infect.exe .\out.exe resize
+> .\infectPE.exe .\executable_to_infect.exe .\out.exe
 
 > g++ -c processCreator.cpp
 > g++ -o procesCreator.exe processCreator.o
