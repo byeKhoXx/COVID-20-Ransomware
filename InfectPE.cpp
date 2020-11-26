@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	if (argc < 4)
+	if (argc < 3)
 	{
 		std::cout << "Usage: " << argv[0] << " <path_exe> <patched_path_exe>\n\
 		Example:\n\
