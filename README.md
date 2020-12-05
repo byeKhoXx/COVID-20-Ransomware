@@ -22,7 +22,7 @@ For this, we have the following files:
 #### Create shellcode
 From C to assembly.
 ```sh
-$ ShellcodeCompiler_x64.exe -r Source.cpp -o Shellcode.bin -a assembly_code.asm -p win_x86
+> ShellcodeCompiler_x64.exe -r Source.cpp -o Shellcode.bin -a assembly_code.asm -p win_x86
 ```
 Assembly to shellcode.
 ```sh
