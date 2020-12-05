@@ -25,13 +25,3 @@ For this, we have the following files:
 > g++ -o shellcodeExecuter.exe shellcodeExecuter.o
 > .\shellcodeExecuter.exe
 ```
-
-
-
-## Shell code 
-Create process + encrypt(Albert) + ofuscation(Walid)
-
-https://docs.microsoft.com/en-us/windows/win32/procthread/creating-processes
-
-
-https://github.com/NytroRST/ShellcodeCompiler
