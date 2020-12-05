@@ -13,7 +13,7 @@ For this, we have the following files:
 
 ```sh
 > g++ -c PE.cpp
-> g++ -c infectPE.cpp
+> g++ -c infectPE.cpp -std=c++17
 > g++ -o infectPE.exe infectPE.o
 > .\infectPE.exe .\executable_to_infect.exe .\out.exe
 
