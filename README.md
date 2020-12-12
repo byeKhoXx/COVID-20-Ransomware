@@ -12,6 +12,7 @@ For this, we have the following files:
 ### Compilation
 
 #### Infect a file
+Put the shellcode inside the infectPE.cpp.
 ```sh
 > g++ -c PE.cpp -std=c++17
 > g++ -c infectPE.cpp -std=c++17
