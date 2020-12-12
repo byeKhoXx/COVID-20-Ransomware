@@ -16,7 +16,7 @@ Put the shellcode inside the infectPE.cpp.
 ```sh
 > g++ -c PE.cpp -std=c++17
 > g++ -c infectPE.cpp -std=c++17
-> g++ -o infectPE.exe infectPE.o
+> g++ -o infectPE.exe infectPE.o PE.o
 > .\infectPE.exe .\executable_to_infect.exe .\out.exe
 ```
 
