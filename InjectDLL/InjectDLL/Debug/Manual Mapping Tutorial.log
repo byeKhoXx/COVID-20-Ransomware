@@ -1,0 +1,6 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Manual Mapping Tutorial.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Injection.cpp
+  main.cpp
+  Generating Code...
+Injection.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+  Manual Mapping Tutorial.vcxproj -> C:\Users\canku\Projects\Manual Mapping Tutorial With Comments (1)\Debug\InjectDLL.exe
