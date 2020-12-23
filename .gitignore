@@ -1,3 +1,5 @@
+.gitignore
 AtomSetup.exe
 AtomSetupHealthy.exe
 malw_FV.zip
+testFolder+payload.zip
