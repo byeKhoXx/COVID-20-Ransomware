@@ -10,7 +10,7 @@ For the infection part we decided to use *code resizing* technique. This consits
 For this, we have the following files, located in */infection* directory:
 - PE.cpp
 - PE.h
-- InfectPE.cpp
+- InfectPE.cpp -> These three first files are a customization made by us of the [InfectPE](https://github.com/secrary/InfectPE) project
 - payloadDownloader.cpp -> code that after will become the shellcode that will be injected in a legitimate exe file
 - AtomSetupHealthy.exe -> Atom installer without being infected
 - AtomSetup.exe -> The Atom installer infected
